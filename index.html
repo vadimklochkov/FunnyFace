@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Funny Face 2015</title>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/text.css" />
+<link rel="stylesheet" href="css/960.css" />
+<link rel="stylesheet" href="css/demo.css" />
+<link rel="stylesheet" href="css/party.css" />
+<link rel="stylesheet" href="/node_modules/formstone/dist/css/upload.css">
+<script src="/node_modules/formstone/dist/js/core.js"></script>
+<script src="/node_modules/formstone/dist/js/upload.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+</head>
+<body>
+
+<div class="container_12">
+  <div class="grid_3">
+    <img src="images/LOGO_FunnyFace.png" alt="Funny Face 2015" class="logo"/>
+  </div>
+  <div class="grid_9 center">
+    <p class="instructions">Удалить часть дополнений для лица.</p>
+        <div id="menu_1" onclick="noShowPictureGLASSES()" class="menuitem" title="Glasses"></div>
+        <div id="menu_2" onclick="noShowPictureBEARD()" class="menuitem" title="Beards"></div>
+        <div id="menu_3" onclick="notShowPictureHAT()" class="menuitem" title="Hats"></div>
+  </div>
+  <div class="clear"></div>
+
+  <div class="grid_12 submenu center">
+	<div id="glasses_1" onclick="showPictureGLASSES_1()" class="glasses accessories"></div>
+    <div id="glasses_2" onclick="showPictureGLASSES_2()" class="glasses accessories"></div>
+    <div id="glasses_3" onclick="showPictureGLASSES_3()" class="glasses accessories"></div>
+  </div>
+
+  <div class="grid_12 submenu center">
+	<div id="beards_1" onclick="showPictureBEARD_1()" class="beards accessories"></div>
+    <div id="beards_2" onclick="showPictureBEARD_2()" class="beards accessories"></div>
+    <div id="beards_3" onclick="showPictureBEARD_3()" class="beards accessories"></div>
+    <div id="beards_4" onclick="showPictureBEARD_4()" class="beards accessories"></div>
+  </div>
+  
+  <div class="grid_12 submenu center">
+	<div id="hats_1" onclick="showPictureHAT_1()" class="hats accessories"></div>
+    <div id="hats_2" onclick="showPictureHAT_2()" class="hats accessories"></div>
+    <div id="hats_3" onclick="showPictureHAT_3()" class="hats accessories"></div>
+    <div id="hats_4" onclick="showPictureHAT_4()" class="hats accessories"></div>
+  </div>
+  <div class="clear"></div>
+<script>
+    jQuery('document').ready(function($){
+        $('.upload').upload({
+          action:'obr.php',
+          label:'Перетащите изображение в jpeg не более 300 КБ',
+          postKey:'file',
+          maxQueue:1,
+          maxSize:300000
+
+        }).on("start.upload", Start);
+    });
+    
+    function Start(e, files) {
+
+      console.log('Start');
+      var html = '';
+      for(var i=0; i < files.length; i++) {
+        if(files[i].size > 300000){
+          alert('Размер изображения выше 300кб')
+        }
+        html +='<img id="imgYou" style="width:100%;position:center;" src="/uploads/' + files[i].name + '" alt="">'
+      } 
+      $("#res").append(html);
+    };
+    // left right
+    function leftImg() {
+      document.getElementById('imgYou').style.transform='rotate(90deg)';
+    };
+    function centerImg() {
+      document.getElementById('imgYou').style.transform='rotate(0deg)';
+    };
+    function rightImg() {
+      document.getElementById('imgYou').style.transform='rotate(-90deg)';
+    };
+    // size
+    function plusSize() {
+      document.getElementById('imgYou').style.width='125%';
+    };
+    function minusSize() {
+      document.getElementById('imgYou').style.width='75%';
+    };
+    function Size() {
+      document.getElementById('imgYou').style.width='100%';
+    };
+    // шапки
+    function showPictureHAT_1() {
+      document.getElementById('HAT_1').style.display='block';
+    };
+    function showPictureHAT_2() {
+      document.getElementById('HAT_2').style.display='block';
+    };
+    function showPictureHAT_3() {
+      document.getElementById('HAT_3').style.display='block';
+    };
+    function showPictureHAT_4() {
+      document.getElementById('HAT_4').style.display='block';
+    };
+    
+    function notShowPictureHAT() {
+      document.getElementById('HAT_1').style.display='none';
+      document.getElementById('HAT_2').style.display='none';
+      document.getElementById('HAT_3').style.display='none';
+      document.getElementById('HAT_4').style.display='none';
+    };
+    // очки
+    function showPictureGLASSES_1() {
+      document.getElementById('GLASSES_1').style.display='block';
+    };
+    function showPictureGLASSES_2() {
+      document.getElementById('GLASSES_2').style.display='block';
+    };
+    function showPictureGLASSES_3() {
+      document.getElementById('GLASSES_3').style.display='block';
+    };
+    function noShowPictureGLASSES() {
+      document.getElementById('GLASSES_1').style.display='none';
+      document.getElementById('GLASSES_2').style.display='none';
+      document.getElementById('GLASSES_3').style.display='none';
+    };
+    // усы
+    function showPictureBEARD_1() {
+      document.getElementById('BEARD_1').style.display='block';
+    };
+    function showPictureBEARD_2() {
+      document.getElementById('BEARD_2').style.display='block';
+    };
+    function showPictureBEARD_3() {
+      document.getElementById('BEARD_3').style.display='block';
+    };
+    function showPictureBEARD_4() {
+      document.getElementById('BEARD_4').style.display='block';
+    };
+    function noShowPictureBEARD() {
+      document.getElementById('BEARD_1').style.display='none';
+      document.getElementById('BEARD_2').style.display='none';
+      document.getElementById('BEARD_3').style.display='none';
+      document.getElementById('BEARD_4').style.display='none';
+    };
+</script>
+ <div class="grid_4 prefix_4 suffix_4">
+    <div class="drop upload" style="height: 40px; padding-top: 10px; padding-left: 10px;">
+      
+    </div>
+    <div id="">
+      
+    </div>
+      </div> 
+  <div class="clear"></div>
+  
+
+  <div style="padding-left: 25%;">
+      <div>
+        <div>size</div>
+        <br>
+        <button id="plus"  onclick="plusSize()" class="button">125%</button>
+        <button id="plus"  onclick="Size()" class="button">100%</button>
+        <button id="plus"  onclick="minusSize()" class="button">75%</button>
+      </div>
+      <div style="padding-left: 42%; margin-top: -55px;">
+        <div>Rotate</div>
+        <br>
+        <button id="plus"  onclick="leftImg()" class="button">Left</button>
+        <button id="plus"  onclick="centerImg()" class="button">Center</button>
+        <button id="plus"  onclick="rightImg()" class="button">Right</button>
+        
+      </div>
+  </div>
+
+  <div class="grid_6 prefix_3 suffix_3">
+		<div id="picture" class="picture">
+        	<div id="res" class="picture">
+            <!-- шапки -->
+            <img id="HAT_1" src="/images/accessories/HAT_1.png" style="position:absolute;display:none; margin-top: 0%; margin-left: 70px;height: 25%;"/>
+            <img id="HAT_2" src="/images/accessories/HAT_2.png" style="position:absolute;display:none; margin-top: 0%; margin-left: 70px;height: 25%;"/>
+            <img id="HAT_3" src="/images/accessories/HAT_3.png" style="position:absolute;display:none; margin-top: 0%; margin-left: 70px;height: 40%;"/>
+            <img id="HAT_4" src="/images/accessories/HAT_4.png" style="position:absolute;display:none; margin-top: 0%; margin-left: 100px;height: 25%;"/>
+            <!-- ОЧКИ -->
+            <img id="GLASSES_1" src="/images/accessories/GLASSES_1.png" style="position:absolute;display:none; margin-top: 15%; margin-left: 70px;height: 10%;"/>
+            <img id="GLASSES_2" src="/images/accessories/GLASSES_2.png" style="position:absolute;display:none; margin-top: 15%; margin-left: 111px;height: 10%;"/>
+            <img id="GLASSES_3" src="/images/accessories/GLASSES_3.png" style="position:absolute;display:none; margin-top: 15%; margin-left: 112px;height: 10%;"/>
+            <!-- усы -->
+            <img id="BEARD_1" src="/images/accessories/BEARD_1.png" style="position:absolute;display:none; margin-top: 25%; margin-left: 70px;"/>
+            <img id="BEARD_2" src="/images/accessories/BEARD_2.png" style="position:absolute;display:none; margin-top: 22%; margin-left: 100px;height: 40%;"/>
+            <img id="BEARD_3" src="/images/accessories/BEARD_3.png" style="position:absolute;display:none; margin-top: 22%; margin-left: 60px; height: 20%;"/>
+            <img id="BEARD_4" src="/images/accessories/BEARD_4.png" style="position:absolute;display:none; margin-top: 24%; margin-left: 60px; height: 17%;"/>
+          </div>
+        </div>
+  </div>
+  <div class="clear"></div>
+  
+  <div class="grid_4 prefix_4 suffix_4 center">
+    <p><button id="save" class="button" onClick="javascript:savePicture();">Save Picture</button></p>
+  </div>
+  <div class="clear"></div>
+  <div class="grid_12">
+    <p>
+      Funny Face - 43º WorldSkills Competition - São Paulo - 2015. All rights reserved.
+    </p>
+  </div>
+  <div class="clear"></div>
+</body>
+</html>
